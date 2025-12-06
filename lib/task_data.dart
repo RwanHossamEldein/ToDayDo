@@ -1,8 +1,8 @@
 class TaskData {
   String title;
   bool isDone;
-  String startDate;
-  String endDate;
+  DateTime startDate;
+  DateTime endDate;
 
   TaskData({
     required this.title,

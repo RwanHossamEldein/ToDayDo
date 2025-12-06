@@ -10,78 +10,81 @@ class TodoScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var TaskProv = Provider.of<TaskProvider>(context);
-    var tasks = TaskProv.tasks;
+
+    
 
     double totalHeight = MediaQuery.of(context).size.height;
-    return Scaffold(
-      appBar: CustomAppBar(),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(left: 15),
-            child: Row(
-              children: [
-                Text(
-                  'You have ${tasks.length} tasks today',
-                  style: TextStyle(
-                    color: TaskProv.themeMode == ThemeMode.light
-                        ? const Color.fromARGB(255, 2, 1, 1)
-                        : const Color.fromARGB(255, 255, 252, 252),
-                  ),
-                ),
-                Spacer(),
-                Text(
-                  'add a new task',
-                  style: TextStyle(
-                    color: TaskProv.themeMode == ThemeMode.light
-                        ? const Color.fromARGB(255, 2, 1, 1)
-                        : const Color.fromARGB(255, 255, 252, 252),
-                  ),
-                ),
-                IconButton(
-                  onPressed: () {
-                    showModalBottomSheet(
-                      context: context,
-                      isScrollControlled: true,
-                      builder: (context) => CustomBottomSheet(),
-                    );
-                  },
-                  icon: Icon(Icons.add),
-                ),
-              ],
-            ),
-          ),
-          Expanded(
-            child: Card(
-              margin: EdgeInsets.only(
-                right: 15,
-                left: 15,
-                top: 20,
-                bottom: totalHeight * 0.1,
-              ),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(15),
-              ),
-              elevation: 5,
-              color: Theme.of(context).cardColor,
-              child: tasks.isEmpty
-                  ? const Center(
-                      child: Text(
-                        'No tasks added yet!',
-                        style: TextStyle(fontSize: 18),
-                      ),
-                    )
-                  : ListView.builder(
-                      itemCount: tasks.length,
-                      itemBuilder: (context, index) {
-                        return CustomTask(index: index);
-                      },
+    return Consumer<TaskProvider>(
+      builder: (BuildContext context,prov, Widget? child)=>
+       Scaffold(
+        appBar: CustomAppBar(),
+        body: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(left: 15),
+              child: Row(
+                children: [
+                  Text(
+                    'You have ${prov.tasks.length} tasks today',
+                    style: TextStyle(
+                      color: prov.themeMode == ThemeMode.light
+                          ? const Color.fromARGB(255, 2, 1, 1)
+                          : const Color.fromARGB(255, 255, 252, 252),
                     ),
+                  ),
+                  Spacer(),
+                  Text(
+                    'add a new task',
+                    style: TextStyle(
+                      color: prov.themeMode == ThemeMode.light
+                          ? const Color.fromARGB(255, 2, 1, 1)
+                          : const Color.fromARGB(255, 255, 252, 252),
+                    ),
+                  ),
+                  IconButton(
+                    onPressed: () {
+                      showModalBottomSheet(
+                        context: context,
+                        isScrollControlled: true,
+                        builder: (context) => CustomBottomSheet(),
+                      );
+                    },
+                    icon: Icon(Icons.add),
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
+            Expanded(
+              child: Card(
+                margin: EdgeInsets.only(
+                  right: 15,
+                  left: 15,
+                  top: 20,
+                  bottom: totalHeight * 0.1,
+                ),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15),
+                ),
+                elevation: 5,
+                color: Theme.of(context).cardColor,
+                child:prov. tasks.isEmpty
+                    ? const Center(
+                        child: Text(
+                          'No tasks added yet!',
+                          style: TextStyle(fontSize: 18),
+                        ),
+                      )
+                    : ListView.builder(
+                        itemCount:prov. tasks.length,
+                        itemBuilder: (context, index) {
+                          return CustomTask(index: index);
+                        },
+                      ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
