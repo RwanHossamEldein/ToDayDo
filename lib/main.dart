@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:todo_app/screens/todo_screen.dart';
 import 'package:todo_app/task_provider.dart';
-import 'package:todo_app/todo_screen.dart';
+
 
 void main()async {
     WidgetsFlutterBinding.ensureInitialized();
@@ -28,33 +29,38 @@ class MyApp extends StatelessWidget {
         return MaterialApp(
          themeMode: Provider.of<TaskProvider>(context).themeMode,
           theme: ThemeData(
+            useMaterial3: true,
+  colorScheme: ColorScheme.light(
+    primary: Color.fromARGB(255, 27, 106, 191),  
+    onPrimary: Colors.white,
+    surface: Colors.white,
+   
+    onSurface: Colors.black,
+  ),
             appBarTheme: const AppBarTheme(
-              backgroundColor: Color.fromARGB(255, 18, 80, 142),
+              backgroundColor:Color.fromARGB(255, 27, 106, 191),
               foregroundColor: Colors.white,
             ),
-            buttonTheme: ButtonThemeData(
-              buttonColor: Color.fromARGB(255, 18, 80, 142),
-            ),
-            cardColor: Color.fromARGB(255, 18, 80, 142),
-            textTheme: const TextTheme(
-              bodyMedium: TextStyle(color: Colors.white),
-            ),
+            cardColor:Color.fromARGB(255, 27, 106, 191),
           ),
-          darkTheme: ThemeData(
-            brightness: Brightness.dark,
-            appBarTheme: const AppBarTheme(
-              backgroundColor: Color.fromARGB(255, 34, 34, 34),
-              foregroundColor: Colors.white,
-            ),
-            buttonTheme: ButtonThemeData(
-              buttonColor: Color.fromARGB(255, 34, 34, 34),
-            ),
-            cardColor: Color.fromARGB(255, 34, 34, 34),
-            textTheme: const TextTheme(
-              bodyMedium: TextStyle(color: Colors.white),
-            ),
-          ),
-          home: TodoScreen(),
+         darkTheme: ThemeData(
+  useMaterial3: true,
+  brightness: Brightness.dark,
+  colorScheme: ColorScheme.dark(
+    primary: Color(0xFF90CAF9), 
+    onPrimary: Colors.black,
+    surface: Color.fromARGB(255, 66, 65, 65),
+    onSurface: Colors.white,
+  ),
+  cardColor:  Color.fromARGB(255, 34, 34, 34),
+  appBarTheme: const AppBarTheme(
+    backgroundColor: Color.fromARGB(255, 34, 34, 34),
+    foregroundColor: Colors.white,
+  ),
+),
+
+         
+          home:TodoScreen(),
           debugShowCheckedModeBanner: false,
         );
       },

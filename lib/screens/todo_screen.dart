@@ -5,9 +5,23 @@ import 'package:todo_app/widgets/custom_bottom_sheet.dart';
 import 'package:todo_app/widgets/custom_task.dart' show CustomTask;
 import 'package:todo_app/task_provider.dart';
 
-class TodoScreen extends StatelessWidget {
+class TodoScreen extends StatefulWidget {
   const TodoScreen({super.key});
 
+  @override
+  State<TodoScreen> createState() => _TodoScreenState();
+}
+
+class _TodoScreenState extends State<TodoScreen> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+    Provider.of<TaskProvider>(context, listen: false).loadTasks();
+    
+  });
+    
+  }
   @override
   Widget build(BuildContext context) {
 

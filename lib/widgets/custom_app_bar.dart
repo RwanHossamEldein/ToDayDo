@@ -38,19 +38,19 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
               style: const TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.normal,
-              ),
+            color: Colors.white  ),
             ),
             Text(
               date,
               style: const TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.normal,
-              ),
+             color: Colors.white ),
             ),
             const SizedBox(height: 5),
             const Text(
               'your tasks for today',
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold,color: Colors.white),
             ),
           ],
         ),
